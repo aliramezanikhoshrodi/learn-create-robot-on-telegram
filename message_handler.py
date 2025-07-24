@@ -14,9 +14,20 @@ user_id = []
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.send_message(message.chat.id, "Welcome to my bot.", reply_markup=inline_keyboard)
+    bot.send_message(message.chat.id, "Welcome to my bot.")
+    bot.send_message(message.chat.id, "Please tell me your name.")
+    bot.register_next_step_handler(message, get_name)
     if message.chat.id not in user_id:
         user_id.append(message.chat.id)
+def get_name(message):
+    name = message.text
+    bot.send_message(message.chat.id, f"Hello {name}! How old are you?")
+    bot.register_next_step_handler(message, get_age, name)
+def get_age(message, name):
+    age = message.text
+    bot.send_message(message.chat.id, f"Name: {name}\nAge: {age}")
+    bot.send_message(message.chat.id, "Now you can interact with the buttons below.", reply_markup=inline_keyboard)
+
 
 @bot.message_handler(regexp="(^hello|hi|hey)$")
 def greet(message):
