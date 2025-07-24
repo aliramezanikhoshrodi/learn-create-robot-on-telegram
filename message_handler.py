@@ -1,4 +1,4 @@
-from gitignore.API_TOKEN import API_TOKEN   
+from gitignore import API_TOKEN   
 import telebot
 
 api_token = API_TOKEN.api_token()
