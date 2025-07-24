@@ -8,4 +8,8 @@ bot = telebot.TeleBot(api_token)
 def start(message):
     bot.send_message(message.chat.id, "Welcome to my bot.")
 
+@bot.message_handler(regexp="(^hello|hi|hey)$")
+def greet(message):
+    bot.reply_to(message, "Hello! How are you?")
+
 bot.polling()
