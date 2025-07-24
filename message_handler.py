@@ -1,4 +1,4 @@
-import API_TOKEN as API_TOKEN
+from gitignore.API_TOKEN import API_TOKEN   
 import telebot
 
 api_token = API_TOKEN.api_token()
@@ -20,5 +20,5 @@ def greet(message):
 def surprise(message):
     for id in user_id:
         bot.send_message(id, "SURPRISE!!")
-        
+
 bot.polling()
